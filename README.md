@@ -100,7 +100,7 @@ Once configured, you can ask Claude:
 
 - 📖 [Spidra Documentation](https://docs.spidra.io/)
 - 🔧 [MCP Documentation](https://modelcontextprotocol.io/)
-- 🎥 [YouTube Tutorial](https://youtube.com/@joelolawanle) - Watch the full tutorial on building this MCP server
+- 🎥 [YouTube Tutorial](https://www.youtube.com/watch?v=KbHzgrC6rto) - Watch the full tutorial on building this MCP server
 
 ## License
 
