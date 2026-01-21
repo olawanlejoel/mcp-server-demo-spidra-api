@@ -27,8 +27,8 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/joelolawanle/mcp-server-spidra-api.git
-   cd mcp-server-spidra-api
+   git clone https://github.com/joelolawanle/mcp-server-demo-spidra-api.git
+   cd mcp-server-demo-spidra-api
    ```
 
 2. Install dependencies:
