@@ -1,5 +1,16 @@
 # Building a simple MCP server using Spidra API
 
+> **⚠️ This is a tutorial project, not the official Spidra MCP server.**
+> It was built for the [YouTube walkthrough](https://www.youtube.com/watch?v=KbHzgrC6rto) on writing an MCP server from scratch, and the code here intentionally matches what's shown in that video — it has **not** been kept in sync with the Spidra API, which has grown considerably since this was recorded (batch scraping, site crawling, JSON-schema structured extraction, looping over repeated elements, screenshots, and more).
+>
+> If you want a scraping MCP server that works with the current API, install the official one instead:
+> ```bash
+> claude mcp add spidra -e SPIDRA_API_KEY=spd_YOUR_API_KEY -- npx -y spidra-mcp
+> ```
+> See [spidra-mcp-server](https://github.com/spidra-io/spidra-mcp-server) for the full tool list and setup for other clients (Cursor, Claude Desktop, etc.).
+>
+> Keep reading if you're here to follow the tutorial and learn how this was built.
+
 A Model Context Protocol (MCP) server that integrates with the [Spidra](https://spidra.io) web scraping API, enabling AI assistants like Claude to scrape and extract data from websites.
 
 ## What is Spidra?
@@ -27,7 +38,7 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/joelolawanle/mcp-server-demo-spidra-api.git
+   git clone https://github.com/olawanlejoel/mcp-server-demo-spidra-api.git
    cd mcp-server-demo-spidra-api
    ```
 
@@ -68,12 +79,18 @@ Add this server to your Claude Desktop configuration (`claude_desktop_config.jso
 
 ### `submit_scrape_job`
 
-Submit a new scraping job to Spidra.
+Submit 1-3 URLs for scraping.
 
 **Parameters:**
-- `url` (required) - The URL to scrape
-- `schema` - JSON schema defining the data to extract
-- `aiExtraction` - Enable AI-powered extraction
+- `urls` (required) - Array of 1-3 objects, each with:
+  - `url` (required) - The URL to scrape
+  - `actions` - Optional browser actions to run before scraping (`click`, `type`, `scroll`, `wait`, `select`)
+  - `cookies` - Optional cookies to set before scraping
+- `prompt` - Optional LLM prompt for extracting/transforming the scraped content
+- `output` - `"json"` or `"markdown"`
+- `useProxy` - Enable stealth mode with proxy rotation
+
+> Note: this reflects the schema in `src/index.ts` at the time of the video. The live Spidra API has since dropped the `select` action type and moved cookies to a single request-level string — see the banner at the top of this README for what's current.
 
 ### `get_scrape_status`
 
